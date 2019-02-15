@@ -46,7 +46,7 @@ const suprimerArt = require ('./server/routes/cours/suprimerCours')
 const updateArt = require ('./server/routes/cours/updateCours')
 const swagger = require('./server/routes/swagger')
 
-
+// c bon 
 app.use('/auth',login )
 app.use('/home',home)
 app.use('/cours',ajouterArt)
