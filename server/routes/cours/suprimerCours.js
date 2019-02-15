@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const cours=require('../../models/article');
+const cours=require('../../models/cours');
 const user=require('../../models/user');
 
 router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
