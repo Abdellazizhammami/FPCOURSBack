@@ -17,7 +17,7 @@ router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
     }
     
     
-    if((art.auteur==use.name)||(use.admin)){
+    if((course.name==use.name)||(use.admin)){
         const resultat= await cours.deleteOne({_id:idArt});
         res.send(resultat);
     }else{
