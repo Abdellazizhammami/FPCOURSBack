@@ -15,7 +15,7 @@ router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
     } catch (error) {
         res.send('erreur id user');
     }
-    
+    // helllooo
     
     if((course.name==use.name)||(use.admin)){
         const resultat= await cours.deleteOne({_id:idArt});
