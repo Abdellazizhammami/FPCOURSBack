@@ -1,9 +1,14 @@
 const mongoose=require('mongoose');
 
 const commentaire=new mongoose.Schema({
-    IdUser : String,
-    Username:String,
-    IDArticle : String,
+    user: {
+        type: mongoose.Schema.ObjectId,
+        Ref: 'users'
+    },
+    cours: {
+        type: mongoose.Schema.ObjectId,
+        Ref: 'cours'
+    },
     date:{type: Date, default:Date.now},
     corps:String
     

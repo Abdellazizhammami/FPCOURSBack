@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 const cors=require('cors')
-mongoose.connect('mongodb://localhost:27017/blogDb',{ useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/ElearningDb',{ useNewUrlParser: true })
 const app = express()
 ///////////////////////////////////////////////////
 //morgan

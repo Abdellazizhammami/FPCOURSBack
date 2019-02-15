@@ -6,7 +6,9 @@ const user = new mongoose.Schema({
     lastname: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 5 },
-    admin: {type: Boolean, default: false }
+    status: {
+        type: String, default:'Student',
+        enum: ['Student','Teacher','Admin'] }
 });
 
 user.methods.generatehash=function(password){

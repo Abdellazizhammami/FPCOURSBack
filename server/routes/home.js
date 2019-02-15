@@ -1,5 +1,5 @@
 const router=require('express').Router();
-const article = require('../models/article');
+const cours = require('../models/cours');
 
 /**
  * @swagger
@@ -20,12 +20,12 @@ const article = require('../models/article');
  *       200:
  *         description: 
  */
-router.get('/home/:auth',async (req,res)=>{
-    if(req.params.auth=='all') {
-    const result= await article.find().exec()
+router.get('/home/:prof',async (req,res)=>{
+    if(req.params.prof=='all') {
+    const result= await cours.find().populate({path:'prof', select:['name','lastname']}).exec()
     res.send(result);
     } else{
-        const result= await article.find({auteur:req.params.auth}).exec()
+        const result= await cours.find({prof:req.params.prof}).populate({path:'prof',select:['name','lastname']}).exec()
         res.send(result);  
     }
 })
