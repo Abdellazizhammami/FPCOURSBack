@@ -23,7 +23,7 @@ router.post('/updateArt/:idUser/:idCours', async (req, res) => {
     
     
 
-    if (art.auteur === userr.name) {
+    if (cours.prof === userr._id) {
 
         if (modif.titre) {
              await cours.where({_id:idCours}).updateOne({ $set: { titre: modif.titre }});
