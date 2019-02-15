@@ -32,7 +32,7 @@ const cours = new mongoose.Schema({
 });
 
 var test = new mongoose.Schema({
-    titre: string,
+    titre: String,
     questions: [{
         type: mongoose.Schema.ObjectId,
         Ref: 'questions'

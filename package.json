@@ -17,11 +17,7 @@
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.4.0",
-<<<<<<< HEAD
     "mongoose": "^5.4.11",
-=======
-    "mongoose": "^5.4.9",
->>>>>>> 167cb6d6b68d1b2d7881114f0f4806568535b967
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "path": "^0.12.7",
