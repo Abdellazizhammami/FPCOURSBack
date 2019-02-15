@@ -5,6 +5,7 @@ const user=require('../../models/user');
 router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
     const idUser=req.params.idUser;
     const idCours=req.params.idCours;
+    //7ajaaa
     try {
         const course=await cours.findById(idCours).populate({path:'prof',select:['name','lastname']}).exec();
     } catch (error) {
