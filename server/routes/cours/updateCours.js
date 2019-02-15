@@ -1,15 +1,15 @@
 
 const router = require('express').Router();
-const article = require('../../models/article');
+const cours = require('../../models/cours');
 const user=require('../../models/user');
 
-router.post('/updateArt/:idUser/:idArt', async (req, res) => {
-    var idArt = req.params.idArt;
+router.post('/updateArt/:idUser/:idCours', async (req, res) => {
+    var idCours = req.params.idCours;
     var idUser = req.params.idUser;
     var modif = req.body;
     try {
-        const art = await article.findById( idArt ).exec();
-        console.log(art);
+        const course = await cours.findById( idCours ).exec();
+        console.log(course);
     } catch (error) {
         res.send('erreur id article');
     }
@@ -26,13 +26,13 @@ router.post('/updateArt/:idUser/:idArt', async (req, res) => {
     if (art.auteur === userr.name) {
 
         if (modif.titre) {
-             await article.where({_id:idArt}).updateOne({ $set: { titre: modif.titre }});
-             const resultat = await article.findOne({_id:idArt}).exec();
+             await cours.where({_id:idCours}).updateOne({ $set: { titre: modif.titre }});
+             const resultat = await article.findOne({_id:idCours}).exec();
              res.send(resultat);
         };
         if (modif.contenu) {
-            await article.where({_id:idArt}).updateOne({ $set: { contenu: modif.contenu }});
-           const resultat1 = await article.findOne({_id:idArt}).exec();
+            await cours.where({_id:idCours}).updateOne({ $set: { contenu: modif.contenu }});
+           const resultat1 = await cours.findOne({_id:idcours}).exec();
            res.send(resultat1);
        };
         

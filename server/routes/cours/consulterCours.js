@@ -1,11 +1,11 @@
 const router=require('express').Router();
-const article=require('../../models/article');
+const cours=require('../../models/cours');
 const verifytoken= require('./../jwt').verifyToken;
 
 
-router.get('/consulterArt/:idArt', verifytoken,async (req,res)=>{
+router.get('/consulterArt/:idCours', verifytoken,async (req,res)=>{
     try {
-        const resultat=await article.findById(req.params.idArt).exec();
+        const resultat=await cours.findById(req.params.idCours).exec();
         res.send(resultat);
     } catch (error) {
         res.send('Identificateur de article est non valide, veuillez saisir un autre identifiant');
