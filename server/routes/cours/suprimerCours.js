@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const article=require('../../models/article');
+const cours=require('../../models/article');
 const user=require('../../models/user');
 
-router.get('/deleteArt/:idUser/:idArt', async (req,res)=>{
+router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
     const idUser=req.params.idUser;
-    const idArt=req.params.idArt;
+    const idCours=req.params.idCours;
     try {
-        const art=await article.findById(idArt).exec();
+        const course=await cours.findById(idCours).populate({path:'prof',select:['name','lastname']}).exec();
     } catch (error) {
         res.send('erreur id article');
     }
@@ -18,7 +18,7 @@ router.get('/deleteArt/:idUser/:idArt', async (req,res)=>{
     
     
     if((art.auteur==use.name)||(use.admin)){
-        const resultat= await article.deleteOne({_id:idArt});
+        const resultat= await cours.deleteOne({_id:idArt});
         res.send(resultat);
     }else{
     res.send('5atiiiiiiiiik');
