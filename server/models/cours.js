@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
+//const users = require('./user');
+
+var chapitre = new mongoose.Schema({
+    titre: String,
+    contenu: String
+});
 
 const cours = new mongoose.Schema({
     titre: String,
     date: { type: Date, default: Date.now },
     prof: {
-        type: mongoose.Schema.ObjectId,
-        Ref: 'users'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
     },
-    chapitres: [{
-        type: mongoose.Schema.ObjectId,
-        Ref: 'chapitres'
-    }],
+    chapitres: [chapitre],
     tests: [{
         type: mongoose.Schema.ObjectId,
         Ref: 'tests'
@@ -54,10 +57,7 @@ var proposition = new mongoose.Schema({
 
 
 
-var chapitre = new mongoose.Schema({
-    titre: String,
-    contenu: String
-});
+
 
 const coursModel = mongoose.model('cours', cours);
 const chapModel = mongoose.model('chapitres', chapitre);
