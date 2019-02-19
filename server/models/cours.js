@@ -5,6 +5,20 @@ var chapitre = new mongoose.Schema({
     titre: String,
     contenu: String
 });
+var proposition = new mongoose.Schema({
+    propo: String,
+    reponse: Boolean
+});
+var question = new mongoose.Schema({
+    enonce: String,
+    propos: [proposition]
+});
+var test = new mongoose.Schema({
+    titre: String,
+    questions: [question]
+});
+
+
 
 const cours = new mongoose.Schema({
     titre: String,
@@ -14,10 +28,7 @@ const cours = new mongoose.Schema({
         ref: 'users'
     },
     chapitres: [chapitre],
-    tests: [{
-        type: mongoose.Schema.ObjectId,
-        Ref: 'tests'
-    }],
+    tests: [test],
     status: {
         type: String,
         default: 'druft',
@@ -29,31 +40,16 @@ const cours = new mongoose.Schema({
     }],
     categorie:{
         type:String,
-        enum:['Programming languages','Web Technologies','Network & Système','Embedded','Project Management']
+        enum:['Programming languages','Web Technologies','Network & System','Project Management']
         
     }
 });
 
-var test = new mongoose.Schema({
-    titre: String,
-    questions: [{
-        type: mongoose.Schema.ObjectId,
-        Ref: 'questions'
-    }]
-});
 
-var question = new mongoose.Schema({
-    enonce: String,
-    propos: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'propositions'
-    }]
-});
 
-var proposition = new mongoose.Schema({
-    propo: String,
-    reponse: Boolean
-});
+
+
+
 
 
 
