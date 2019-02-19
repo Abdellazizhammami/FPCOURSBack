@@ -45,6 +45,8 @@ const listerArticles = require ('./server/routes/cours/listerCours')
 const suprimerArt = require ('./server/routes/cours/suprimerCours')
 const updateArt = require ('./server/routes/cours/updateCours')
 const swagger = require('./server/routes/swagger')
+const mult=require('./server/routes/cours/multer')
+const affiche=require('./server/routes/cours/afficheImg')
 
 // c  pas bon 
 app.use('/auth',login )
@@ -63,6 +65,8 @@ app.use('/cours',updateComment)
 app.use('/cours',deleteComment)
 app.use('/cours',listerComment)
 app.use('/api-docs',swagger)
+app.use('/api-img',mult)
+app.use('/image',affiche)
 
 
 
