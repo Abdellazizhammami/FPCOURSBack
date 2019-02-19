@@ -1,5 +1,5 @@
 const router=require('express').Router();
-const cours = require('../models/cours');
+const cours = require('../models/cours').coursModel;
 
 /**
  * @swagger
