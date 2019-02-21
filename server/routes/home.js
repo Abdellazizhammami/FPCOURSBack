@@ -21,8 +21,11 @@ const cours = require('../models/cours').coursModel;
  *         description: 
  */
 router.get('/home/:prof',async (req,res)=>{
+
     if(req.params.prof=='all') {
-    const result= await cours.find().populate({path:'prof', select:['name','lastname']}).exec()
+        
+    const result= await cours.find().populate({path:'prof', select:['name','lastname']}).exec();
+    
     res.send(result);
     } else{
         const result= await cours.find({prof:req.params.prof}).populate({path:'prof',select:['name','lastname']}).exec()
