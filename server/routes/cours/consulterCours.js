@@ -8,6 +8,7 @@ router.get('/consulterCours/:idCours', verifytoken,async (req,res)=>{
         const resultat=await cours.findById(req.params.idCours).populate({path:'prof',select:['name','lastname']}).exec();
         console.log(req.params.idCours);
         res.send(resultat);
+        console.log (resultat);
     } catch (error) {
         res.send('Identificateur de article est non valide, veuillez saisir un autre identifiant');
     }
