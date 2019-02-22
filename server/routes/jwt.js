@@ -11,6 +11,7 @@ module.exports.verifyToken = function(req,res,next){
         jwt.verify(token,'secretKey',(err,decoded)=>{
             if(err){
                 res.send({message: "badtoken"});
+                console.log('mauvais token');
             }
             else{
                 //console.log('il est authentifier');
