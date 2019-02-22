@@ -4,7 +4,7 @@ const parser = require('body-parser');
 const path = require('path');
 var fs = require('fs');
 
-const cours = require('../../models/cours')
+const cours = require('../../models/cours').coursModel;
 
 
 var storage = multer.diskStorage({
@@ -27,8 +27,14 @@ router.post('/imgUpload', upload.single('image'), async (req, res) => {
         console.log(img);
         var result;
         req.body.image = req.file.originalname;
-        result = await cours.create(req.body)
-        res.send({ 'message': 'File uploaded successfully', data: result });
+        try {
+            result = await cours.create(req.body)
+            res.send({ 'message': 'File uploaded successfully', data: result });
+        } catch (error) {
+            
+            res.send({ 'message': 'File Error '});
+        }
+       
     }
 });
 
