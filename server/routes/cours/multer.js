@@ -19,16 +19,17 @@ var storage = multer.diskStorage({
 var upload = multer({ storage })
 
 router.post('/imgUpload', upload.single('image'), async (req, res) => {
-    console.log('file received');
+    
     if (!req.file) {
         res.send({ 'message': 'No file received' });
     } else {
+        console.log('file received');
         img = req.file.originalname;
-        console.log(img);
+        
         var result;
         req.body.image = req.file.originalname;
         try {
-            result = await cours.create(req.body)
+            result = await cours.create(req.body);
             res.send({ 'message': 'File uploaded successfully', data: result });
         } catch (error) {
             
