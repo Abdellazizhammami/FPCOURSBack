@@ -3,11 +3,11 @@ const mongoose=require('mongoose');
 const commentaire=new mongoose.Schema({
     user: {
         type: mongoose.Schema.ObjectId,
-        Ref: 'users'
+        ref: 'users'
     },
     cours: {
         type: mongoose.Schema.ObjectId,
-        Ref: 'cours'
+        ref: 'cours'
     },
     date:{type: Date, default:Date.now},
     corps:String

@@ -16,4 +16,4 @@ router.get('/consulterCours/:idCours', verifytoken,async (req,res)=>{
     
 })
  
-module.exports=router;
+module.exports=router; 
