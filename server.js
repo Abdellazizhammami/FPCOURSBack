@@ -68,7 +68,24 @@ app.use('/api-docs',swagger)
 app.use('/api-img',mult)
 app.use('/image',affiche)
 
+//passport FB
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
 
+
+passport.use(new FacebookStrategy({
+    clientID: 2224103910944879,
+    clientSecret: '9afb941ea7a92926e54fb26ee902db6e',
+    callbackURL: "http://localhost:3001/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+//
 
 
 
