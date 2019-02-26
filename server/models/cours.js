@@ -23,6 +23,7 @@ var test = new mongoose.Schema({
 const cours = new mongoose.Schema({
     titre: String,
     date: { type: Date, default: Date.now },
+    image:String,
     prof: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'

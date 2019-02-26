@@ -4,8 +4,8 @@ const verifyToken = require('../../jwt').verifyToken;
 router.post('/ajoutComment/:idUser/:idArt',verifyToken, async (req,res)=>{
 
 var  newcoment = new Comment();
-newcoment.IdUser = req.params.idUser;
-newcoment.IDArticle = req.params.idArt;
+newcoment.user = req.params.idUser;
+newcoment.cours = req.params.idArt;
 newcoment.corps = req.body.corps;
 newcoment.Username =req.body.userName;
 
