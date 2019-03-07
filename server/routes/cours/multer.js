@@ -3,6 +3,7 @@ const multer = require('multer');
 const parser = require('body-parser');
 const path = require('path');
 var fs = require('fs');
+const verifytoken= require('./../jwt').verifyToken;
 
 const cours = require('../../models/cours').coursModel;
 
@@ -18,7 +19,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage });
 
-router.post('/imgUpload', upload.single('image'), async (req, res) => {
+router.post('/imgUpload', upload.single('image'),verifytoken, async (req, res) => {
     
     if (!req.file) {
         res.send({ 'message': 'No file received' });
@@ -29,13 +30,8 @@ router.post('/imgUpload', upload.single('image'), async (req, res) => {
         var result;
 
         req.body.image = req.file.originalname;
-        console.log(req.body);
-        var coursee={};
-        new  FormData(req.body).forEach((value,key) => {
-            coursee[key]=value;
-            
-        });
-        console.log(coursee);
+        
+        
         
         try {
             result = await cours.create(req.body);
