@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
         next(null, file.originalname )
     }
 });
-var upload = multer({ storage })
+var upload = multer({ storage });
 
 router.post('/imgUpload', upload.single('image'), async (req, res) => {
     
@@ -27,7 +27,16 @@ router.post('/imgUpload', upload.single('image'), async (req, res) => {
         img = req.file.originalname;
         
         var result;
+
         req.body.image = req.file.originalname;
+        console.log(req.body);
+        var coursee={};
+        new  FormData(req.body).forEach((value,key) => {
+            coursee[key]=value;
+            
+        });
+        console.log(coursee);
+        
         try {
             result = await cours.create(req.body);
             res.send({ 'message': 'File uploaded successfully', data: result });
