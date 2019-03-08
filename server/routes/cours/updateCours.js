@@ -5,7 +5,7 @@ const user = require('../../models/user');
 const verifytoken = require('./../jwt').verifyToken;
 
 router.post('/upCours/:idUser/:idCours', verifytoken, async (req, res) => {
-    console.log(req.body)
+   
     var idCours = req.params.idCours;
     var idUser = req.params.idUser;
     var modif = req.body;
@@ -13,9 +13,9 @@ router.post('/upCours/:idUser/:idCours', verifytoken, async (req, res) => {
 
     try {
         const course = await cours.findById(idCours).exec();
-        console.log('id user', idUser);
+       
         const userr = await user.findById(idUser).exec();
-        console.log(course.prof._id.toString() , userr._id.toString(),"houni");
+        
         
         if (course.prof._id.toString() == userr._id.toString()) {
 

@@ -1,29 +1,32 @@
 const router = require('express').Router();
-const cours=require('../../models/cours');
+const cours=require('../../models/cours').coursModel;
 const user=require('../../models/user');
+const verifytoken= require('./../jwt').verifyToken;
 
-router.get('/deleteArt/:idUser/:idCours', async (req,res)=>{
+router.get('/deleteC/:idUser/:idCours', verifytoken,async (req,res)=>{
+    
     const idUser=req.params.idUser;
     const idCours=req.params.idCours;
     //7ajaaa
     try {
         const course=await cours.findById(idCours).populate({path:'prof',select:['name','lastname']}).exec();
-    } catch (error) {
-        res.send('erreur id article');
-    }
-    try {
+    
         const use=await user.findById(idUser).exec();
-    } catch (error) {
-        res.send('erreur id user');
-    }
+    
     
      
-    if((cours.prof==use._id)||(use.admin)){
-        const resultat= await cours.deleteOne({_id:idArt});
+    if((course.prof._id.toString() == use._id.toString())||(use.status=='Admin')){
+        
+        const resultat= await cours.deleteOne({_id:idCours}).exec();
+        console.log('test',resultat);
+        
         res.send(resultat);
     }else{
     res.send('5atiiiiiiiiik');
     }
+} catch (error) {
+    res.send('erreur id cours or user');
+}
 })
 
 module.exports=router;
