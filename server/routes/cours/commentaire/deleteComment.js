@@ -1,29 +1,28 @@
-const router=require('express').Router();
+const router = require('express').Router();
 const comments = require('../../../models/comment');
 const users = require('../../../models/user');
-const verifytoken= require('../../jwt').verifyToken;
+const verifytoken = require('../../jwt').verifyToken;
+var data = {};
+
+router.get('/deletecomment/:idcomment/:idUser', verifytoken, async (req, res) => {
+    try {
+        var user = await users.findById(req.params.idUser).exec();
+
+        var coment = await comments.findById(req.params.idcomment)
 
 
-router.get('/deletecomment/:idcomment/:idUser',verifytoken, async (req,res)=>{
-   try{
-       var user = await users.findById(req.params.idUser).exec();
-   } catch (error) {
-       res.send('bad id user');
-   }
-   try{
-       var coment = await comments.findById(req.params.idcomment)
-   } catch(error){
-       res.send('bad id comment');
+        if (user.admin || (coment.user._id == req.params.idUser)) {
 
-   }
- 
-   if(user.admin || (coment.IdUser == req.params.idUser)){
+            const resu = await comments.deleteOne({ _id: req.params.idcomment });
+            data.resultat = resu;
 
-    const resu = await comments.deleteOne({_id : req.params.idcomment});
-    res.send(resu);
+        } else {
+            data.allow = 'you are not allowd to modif this comment';
 
-   } else {
-       res.send('you are not allowd to delete this comment');
-   }
+        }
+    } catch (error) {
+        data.err = 'false id comment or id user';
+    }
+    res.send(data);
 })
 module.exports = router;

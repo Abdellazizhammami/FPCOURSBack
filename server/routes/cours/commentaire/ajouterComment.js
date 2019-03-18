@@ -7,16 +7,16 @@ var  newcoment = new Comment();
 newcoment.user = req.params.idUser;
 newcoment.cours = req.params.idArt;
 newcoment.corps = req.body.corps;
-newcoment.Username =req.body.userName;
 
-newcoment.save(function(err, savedUser){
+
+newcoment.save(function(err, savedComment){
     if (err) {
         console.log(err);
         return res.status(500).send();
     }
     else{
 
-    return res.status(200).send({message :'you have successufuly add a new comment'});
+    return res.status(200).send({message :'you have successufuly add a new comment',Com:savedComment});
 } });     
 })
 module.exports = router ;
