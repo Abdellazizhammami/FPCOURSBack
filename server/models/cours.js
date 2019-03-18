@@ -20,6 +20,7 @@ var test = new mongoose.Schema({
 
 
 
+
 const cours = new mongoose.Schema({
     titre: String,
     date: { type: Date, default: Date.now },
@@ -37,13 +38,14 @@ const cours = new mongoose.Schema({
     },
     validateBy: [{
         type: mongoose.Schema.ObjectId,
-        Ref: 'users'
+        ref: 'users'
     }],
     categorie:{
         type:String,
         enum:['Programming languages','Web Technologies','Network & System','Project Management']
         
-    }
+    },
+    note:{type: Number, default:0}
 });
 
 
